@@ -4,11 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.parkingzne.dtos.PagoDTO;
 import pe.edu.upc.parkingzne.dtos.UsuarioPagoDTO;
 import pe.edu.upc.parkingzne.entities.Pago;
+import pe.edu.upc.parkingzne.exceptions.RequestBodyException;
 import pe.edu.upc.parkingzne.servicesinterfaces.IPagoService;
 
 
@@ -40,14 +43,20 @@ public class PagoController {
     }
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADSUB')")
-    public void insertar(@RequestBody PagoDTO dto) {
+    public ResponseEntity<String> insertar(@RequestBody PagoDTO dto) {
         logger.info("Insertando pago...");
+
+        if (dto == null || dto.getMontoPago() < 0 || dto.getFechaPago() == null) {
+            throw new RequestBodyException("Los campos 'monto' y 'fechaPago' son obligatorios.");
+        }
 
         ModelMapper m = new ModelMapper();
         Pago pg = m.map(dto, Pago.class);
 
         gS.insert(pg);
         logger.info("Pago insertado correctamente.");
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Pago insertado correctamente.");
     }
 
     @GetMapping("/{id}")

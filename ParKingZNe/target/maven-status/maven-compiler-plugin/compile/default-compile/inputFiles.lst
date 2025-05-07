@@ -49,6 +49,10 @@ Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\par
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\entities\Suscripcion.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\entities\TipoNotificacion.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\entities\Usuario.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\exceptions\BadRequestException.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\exceptions\GlobalExceptionHandler.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\exceptions\RequestBodyException.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\exceptions\ResourceNotFoundException.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\ParKingZNeApplication.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\repositories\IEmpresaRepository.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\repositories\IEstacionamientoRepository.java

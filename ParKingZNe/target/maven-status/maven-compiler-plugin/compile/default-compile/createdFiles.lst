@@ -1,0 +1,4 @@
+pe\edu\upc\parkingzne\exceptions\GlobalExceptionHandler.class
+pe\edu\upc\parkingzne\exceptions\ResourceNotFoundException.class
+pe\edu\upc\parkingzne\exceptions\RequestBodyException.class
+pe\edu\upc\parkingzne\exceptions\BadRequestException.class
