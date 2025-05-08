@@ -1,5 +1,6 @@
 package pe.edu.upc.parkingzne.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class Usuario implements Serializable {
     @Column(name = "fechanacimiento", nullable=false)
     private LocalDate fechanacimiento;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "correo", nullable=false, length = 50)
     private String correo;
 
@@ -35,12 +37,14 @@ public class Usuario implements Serializable {
     @Column(name = "longitudUsuario", nullable=false )
     private double longitudUsuario;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "telefono", nullable=false, length = 12)
     private String telefono;
 
     @Column(name = "username", unique = true, length = 20)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", nullable=false, length = 60)
     private String password;
     private Boolean enabled;
