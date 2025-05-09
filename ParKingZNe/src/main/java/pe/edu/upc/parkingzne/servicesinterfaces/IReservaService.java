@@ -12,6 +12,5 @@ public interface IReservaService {
     public void update(Reserva reserva);
     public void delete(int id);
     public List<String[]> listarReservasPorUsuario();
-    public List<String[]> listarReservasDuplicadas();
-    public List<String[]> listarCantidadReservasActivasPorUsuario();
+    public List<Object[]> listarCantidadReservasActivasPorUsuario();
 }

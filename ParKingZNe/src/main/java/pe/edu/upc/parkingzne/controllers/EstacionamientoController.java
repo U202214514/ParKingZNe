@@ -82,6 +82,7 @@ public class EstacionamientoController {
             dto.setFechaReserva(LocalDate.parse(columna[2]));
             dto.setCantidadReservas(Integer.parseInt(columna[3]));
             dto.setTotalGanado(Double.parseDouble(columna[4]));
+            dtoLista.add(dto);
         }
         return dtoLista;
     }

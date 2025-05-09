@@ -82,6 +82,7 @@ public class NotificacionController {
             dto.setFechaEmision(LocalDate.parse(columna[2]));
             dto.setEstado(columna[3]);
             dto.setId_usuario(Integer.parseInt(columna[4]));
+            dtoLista.add(dto);
         }
         return dtoLista;
     }

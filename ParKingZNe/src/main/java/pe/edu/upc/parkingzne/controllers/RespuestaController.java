@@ -72,14 +72,15 @@ public class RespuestaController {
     @PreAuthorize("hasAnyAuthority('ADRCL')")
     public List<RespuestasxReclamoDTO> cantidadRespuestasReclamos(){
         logger.info("Generando la cantidad de respuesta emitidas por reclamo y usuario");
-        List<String[]> fila = eS.obtenerResumenRespuestasPorReclamoYUsuario();
+        List<Object[]> fila = eS.obtenerResumenRespuestasPorReclamoYUsuario();
         List<RespuestasxReclamoDTO> dtoLista = new ArrayList<>();
 
-        for(String[] columna : fila){
+        for(Object[] columna : fila){
             RespuestasxReclamoDTO dto = new RespuestasxReclamoDTO();
-            dto.setTitulo_reclamo(columna[0]);
-            dto.setUsername(columna[1]);
-            dto.setCantidadRespuestas(Integer.parseInt(columna[2]));
+            dto.setTitulo_reclamo((String) columna[1]);
+            dto.setUsername((String)columna[2]);
+            dto.setCantidadRespuestas(((Number)columna[0]).intValue());
+            dtoLista.add(dto);
         }
         return dtoLista;
     }

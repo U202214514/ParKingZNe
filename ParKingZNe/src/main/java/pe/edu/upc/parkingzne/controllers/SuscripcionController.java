@@ -76,6 +76,7 @@ public class SuscripcionController {
             MensajeSuscripcionDTO dto = new MensajeSuscripcionDTO();
             dto.setUsername(columna[0]);
             dto.setMensaje(columna[1]);
+            dtoLista.add(dto);
         }
         return dtoLista;
     }

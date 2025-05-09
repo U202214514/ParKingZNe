@@ -108,6 +108,7 @@ public class PagoController {
             dto.setNombre(columna[1]);
             dto.setApellidos(columna[2]);
             dto.setCantidadPagos(Integer.parseInt(columna[3]));
+            dtoLista.add(dto);
         }
         logger.info("Cantidad de pagos por usuarios generada correctamente con {} elementos.", dtoLista.size());
         return dtoLista;

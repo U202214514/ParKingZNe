@@ -44,12 +44,7 @@ public class ReservaServiceImplement implements IReservaService {
     }
 
     @Override
-    public List<String[]> listarReservasDuplicadas() {
-        return rR.listarReservasDuplicadas();
-    }
-
-    @Override
-    public List<String[]> listarCantidadReservasActivasPorUsuario() {
+    public List<Object[]> listarCantidadReservasActivasPorUsuario() {
         return rR.listarCantidadReservasActivasPorUsuario();
     }
 

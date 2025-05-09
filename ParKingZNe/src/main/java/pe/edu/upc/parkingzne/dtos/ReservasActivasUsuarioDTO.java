@@ -4,7 +4,7 @@ public class ReservasActivasUsuarioDTO {
 
     private String username;
 
-    private String apellido;
+    private String apellidos;
 
     private int cantidadReservasActivas;
 
@@ -16,12 +16,12 @@ public class ReservasActivasUsuarioDTO {
         this.username = username;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public int getCantidadReservasActivas() {

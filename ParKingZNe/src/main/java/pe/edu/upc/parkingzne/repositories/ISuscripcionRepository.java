@@ -20,7 +20,7 @@ public interface ISuscripcionRepository extends JpaRepository<Suscripcion, Integ
             "FROM \n" +
             "    suscripcion s \n" +
             "JOIN \n" +
-            "    usuario u ON s.id_usuario = u.id_usuario \n" +
+            "    Usuario u ON s.id_usuario = u.id_usuario \n" +
             "WHERE \n" +
             "    CURRENT_DATE = s.fecha_inicio", nativeQuery = true)
     public List<String[]> MensajePorSuscripcion();

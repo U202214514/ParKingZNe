@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.parkingzne.dtos.ReservaDTO;
-import pe.edu.upc.parkingzne.dtos.ReservaDuplicadaDTO;
 import pe.edu.upc.parkingzne.dtos.ReservaUsuarioDTO;
 import pe.edu.upc.parkingzne.dtos.ReservasActivasUsuarioDTO;
 import pe.edu.upc.parkingzne.entities.Reserva;
@@ -81,7 +80,7 @@ public class ReservaController {
         for(String[] columna : fila){
             ReservaUsuarioDTO dto = new ReservaUsuarioDTO();
             dto.setUsername(columna[0]);
-            dto.setApellido(columna[1]);
+            dto.setApellidos(columna[1]);
             dto.setFechaReserva(LocalDate.parse(columna[2]));
             dto.setEstadoReserva(columna[3]);
             dtoLista.add(dto);
@@ -90,36 +89,21 @@ public class ReservaController {
         return dtoLista;
     }
 
-    @GetMapping("/reservas-duplicadas")
-    @PreAuthorize("hasAnyAuthority('ADM')")
-    public List<ReservaDuplicadaDTO> reservasDuplicadas(){
-        logger.info("Generando reservas duplicadas");
-        List<String[]> fila =rS.listarReservasDuplicadas();
-        List<ReservaDuplicadaDTO> dtoLista = new ArrayList<>();
 
-        for(String[] columna : fila){
-            ReservaDuplicadaDTO dto = new ReservaDuplicadaDTO();
-            dto.setUsername(columna[0]);
-            dto.setApellido(columna[1]);
-            dto.setNombre(columna[2]);
-            dto.setFechaReserva(LocalDate.parse(columna[3]));
-            dto.setCantidadReservas(Integer.parseInt(columna[4]));
-        }
-        return dtoLista;
-    }
 
     @GetMapping("/reservas-activas-usuario")
     @PreAuthorize("hasAnyAuthority('ADM')")
     public List<ReservasActivasUsuarioDTO> reservasActivasUsuario(){
         logger.info("Generando reservas activas de los usuarios");
-        List<String[]> fila =rS.listarCantidadReservasActivasPorUsuario();
+        List<Object[]> fila =rS.listarCantidadReservasActivasPorUsuario();
         List<ReservasActivasUsuarioDTO> dtoLista = new ArrayList<>();
 
-        for(String[] columna : fila){
+        for (Object[] columna : fila) {
             ReservasActivasUsuarioDTO dto = new ReservasActivasUsuarioDTO();
-            dto.setUsername(columna[0]);
-            dto.setApellido(columna[1]);
-            dto.setCantidadReservasActivas(Integer.parseInt(columna[2]));
+            dto.setUsername((String) columna[0]);
+            dto.setApellidos((String) columna[1]);
+            dto.setCantidadReservasActivas(((Number) columna[2]).intValue());
+            dtoLista.add(dto);
         }
         return dtoLista;
     }

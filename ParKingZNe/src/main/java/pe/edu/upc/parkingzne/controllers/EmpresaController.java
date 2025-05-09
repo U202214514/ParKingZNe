@@ -79,6 +79,7 @@ public class EmpresaController {
             dto.setIdEmpresa(Integer.parseInt(columna[0]));
             dto.setNombreEmpresa(columna[1]);
             dto.setTotalReservas(Integer.parseInt(columna[2]));
+            dtoLista.add(dto);
         }
         return dtoLista;
     }

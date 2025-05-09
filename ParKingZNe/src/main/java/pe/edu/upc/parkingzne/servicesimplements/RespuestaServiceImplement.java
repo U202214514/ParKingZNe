@@ -40,7 +40,7 @@ public class RespuestaServiceImplement implements IRespuestaService {
     }
 
     @Override
-    public List<String[]> obtenerResumenRespuestasPorReclamoYUsuario() {
+    public List<Object[]> obtenerResumenRespuestasPorReclamoYUsuario() {
         return eR.obtenerResumenRespuestasPorReclamoYUsuario();
     }
 

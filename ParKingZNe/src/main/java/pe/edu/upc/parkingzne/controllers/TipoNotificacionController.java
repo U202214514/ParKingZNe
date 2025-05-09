@@ -75,14 +75,14 @@ public class TipoNotificacionController {
     public List<TipoNotificacionContadorDTO> cantidadTiponotificaciones(){
         logger.info("Generando cantidad de tipo notificaciones");
         List<String[]> fila = pS.CantidadxtipoNotificacion();
-        List<TipoNotificacionContadorDTO> dtolista = new ArrayList<>();
+        List<TipoNotificacionContadorDTO> dtoLista = new ArrayList<>();
 
         for(String[] columna : fila){
             TipoNotificacionContadorDTO dto = new TipoNotificacionContadorDTO();
             dto.setTipoNotificacion(columna[0]);
             dto.setCantidad(Integer.parseInt(columna[1]));
-
+            dtoLista.add(dto);
         }
-        return dtolista;
+        return dtoLista;
     }
 }

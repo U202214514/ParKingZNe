@@ -83,6 +83,7 @@ public class ReclamoController {
             dto.setFecha_reclamo(LocalDate.parse(columna[2]));
             dto.setCantidad_reclamos(Integer.parseInt(columna[3]));
             dto.setReclamos_con_reserva(Integer.parseInt(columna[4]));
+            dtoLista.add(dto);
         }
         return dtoLista;
     }
