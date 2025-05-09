@@ -21,14 +21,14 @@ public class Usuario implements Serializable {
     @Column(name = "apellidos", nullable=false, length = 50)
     private String apellidos;
 
-    @Column(name = "fechanacimiento", nullable=false)
+    @Column(name = "fechanacimiento" )
     private LocalDate fechanacimiento;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "correo", nullable=false, length = 50)
     private String correo;
 
-    @Column(name = "placaAuto", nullable= true, length = 10)
+    @Column(name = "placaAuto", length = 10)
     private String placaAuto;
 
     @Column(name = "latitudUsuario", nullable=false )

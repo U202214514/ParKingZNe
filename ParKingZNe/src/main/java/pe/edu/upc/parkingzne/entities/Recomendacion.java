@@ -12,7 +12,7 @@ public class Recomendacion {
     private int idRecomendacion;
     @Column(name="comentario", length = 75, nullable = false)
     private String comentario;
-    @Column(name="calificacion",length = 30, nullable = false)
+    @Column(name="calificacion", length = 30)
     private String calificacion;
     @Column(name="fechaRecomendacion", nullable = false)
     private LocalDate fechaRecomendacion;

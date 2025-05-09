@@ -13,9 +13,9 @@ public class Notificacion {
     private int idNotificacion;
     @Column(name = "mensaje", length = 45, nullable = false)
     private String mensaje;
-    @Column(name = "fechaEmision", nullable = false)
+    @Column(name = "fechaEmision")
     private LocalDate fechaEmision;
-    @Column(name = "fechaProgramada", nullable = false)
+    @Column(name = "fechaProgramada")
     private LocalDate fechaProgramada;
     @Column(name = "estado", length= 50, nullable = false)
     private String estado;
