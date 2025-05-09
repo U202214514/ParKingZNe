@@ -39,7 +39,7 @@ public class ReclamoServiceImplement implements IReclamoService {
     }
 
     @Override
-    public List<String[]> ReporteReclamosUsuario() {
+    public List<Object[]> ReporteReclamosUsuario() {
         return mR.ReporteReclamosUsuario();
     }
 }

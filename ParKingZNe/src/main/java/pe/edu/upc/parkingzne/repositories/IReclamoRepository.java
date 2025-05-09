@@ -12,18 +12,20 @@ import java.util.List;
 public interface IReclamoRepository extends JpaRepository<Reclamo, Integer> {
 
     @Query(value="SELECT \n" +
-            "    u.id_usuario,\n" +
-            "    u.username,\n" +
+            "    u.id_usuario, \n" +
+            "    u.username, \n" +
             "    r.fecha AS fecha_reclamo,\n" +
-            "    COUNT(r.id_reclamo) AS cantidad_reclamos,\n" +
-            "    SUM(CASE WHEN r.id_reserva IS NOT NULL THEN 1 ELSE 0 END) AS reclamos_con_reserva\n" +
+            "    COUNT(r.id_reclamo) AS cantidad_reclamos, \n" +
+            "    COUNT(r.id_reclamo) AS reclamos_con_reserva \n" +
             "FROM \n" +
-            "    Usuario u\n" +
-            "LEFT JOIN \n" +
+            "    Usuario u \n" +
+            "JOIN \n" +
             "    Reclamo r ON u.id_usuario = r.id_usuario\n" +
+            "WHERE \n" +
+            "    r.id_reserva IS NOT NULL\n" +
             "GROUP BY \n" +
             "    u.id_usuario, u.username, r.fecha\n" +
             "ORDER BY \n" +
             "    r.fecha DESC;",nativeQuery = true)
-    public List<String[]>ReporteReclamosUsuario();
+    public List<Object[]>ReporteReclamosUsuario();
 }

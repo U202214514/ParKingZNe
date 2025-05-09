@@ -73,16 +73,16 @@ public class ReclamoController {
     @PreAuthorize("hasAnyAuthority('ADRCL')")
     public List<ReporteReclamosDTO> reportesReclamosxUsuario(){
         logger.info("Reportes de reclamos por los usuarios");
-        List<String[]> fila = mS.ReporteReclamosUsuario();
+        List<Object[]> fila = mS.ReporteReclamosUsuario();
         List<ReporteReclamosDTO> dtoLista = new ArrayList<>();
 
-        for(String[] columna: fila){
+        for(Object[] columna: fila){
             ReporteReclamosDTO dto = new ReporteReclamosDTO();
-            dto.setId_usuario(Integer.parseInt(columna[0]));
-            dto.setUsername(columna[1]);
-            dto.setFecha_reclamo(LocalDate.parse(columna[2]));
-            dto.setCantidad_reclamos(Integer.parseInt(columna[3]));
-            dto.setReclamos_con_reserva(Integer.parseInt(columna[4]));
+            dto.setId_usuario(((Number) columna[0]).intValue());
+            dto.setUsername((String) columna[1]);
+            dto.setFecha_reclamo((LocalDate) columna[2]);
+            dto.setCantidad_reclamos(((Number) columna[3]).intValue());
+            dto.setReclamos_con_reserva(((Number) columna[4]).intValue());
             dtoLista.add(dto);
         }
         return dtoLista;
