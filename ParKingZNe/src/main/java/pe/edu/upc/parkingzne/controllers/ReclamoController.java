@@ -42,7 +42,6 @@ public class ReclamoController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('ADRCL')")
     public ResponseEntity<String> insertar(@Valid @RequestBody ReclamoDTO dto) {
         logger.info("Insertando reclamo por parte del usuario");
 
