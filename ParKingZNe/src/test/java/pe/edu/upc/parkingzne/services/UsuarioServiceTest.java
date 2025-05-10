@@ -61,7 +61,7 @@ public class UsuarioServiceTest {
     @Test
     void insertar_Usuario() {
         usuarioService.insertar(user1);
-        verify(usuarioRepository, times(1)).save(user1); // ✅ solo verificamos que se llamó
+        verify(usuarioRepository, times(1)).save(user1);
     }
 
     @Test
