@@ -12,6 +12,6 @@ public interface IUsuarioService {
     public void update(Usuario u);
     public List<Usuario> usuarioporrol();
     void insertar(Usuario u);
-    public List<String[]> ObtenerUsuarioMasActivo();
+    public List<Object[]>usuariosConEdadentre18y40anos();
 
 }

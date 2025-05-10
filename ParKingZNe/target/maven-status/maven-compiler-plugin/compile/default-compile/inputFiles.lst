@@ -12,6 +12,7 @@ Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\par
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\controllers\SuscripcionController.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\controllers\TipoNotificacionController.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\controllers\UsuarioController.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\CantidadRolesRegistradosDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\EmpresaDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\EmpresaReservaDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\EstacionamientoDTO.java
@@ -23,6 +24,7 @@ Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\par
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\PagoDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\ReclamoDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\RecomendacionDTO.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\RecomendacionPorEstacionamientoDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\ReporteReclamosDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\ReservaDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\ReservasActivasUsuarioDTO.java
@@ -33,8 +35,10 @@ Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\par
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\SuscripcionDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\TipoNotificacionContadorDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\TipoNotificacionDTO.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\TotalReservasNotificadasDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\UsuarioDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\UsuarioPagoDTO.java
+Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\dtos\UsuariosconEdad18Y40yearsDTO.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\entities\Empresa.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\entities\Estacionamiento.java
 Z:\JohnWilliamMachacaSaavedra\ParKingZNe\ParKingZNe\src\main\java\pe\edu\upc\parkingzne\entities\Notificacion.java

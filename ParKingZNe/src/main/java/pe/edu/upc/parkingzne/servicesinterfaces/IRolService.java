@@ -10,4 +10,5 @@ public interface IRolService {
     public Rol listId(int id);
     public void update(Rol r);
     public void delete(int id);
+    public List<Object[]> CantidadRolesxTipo();
 }

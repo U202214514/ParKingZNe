@@ -1,14 +1,19 @@
 package pe.edu.upc.parkingzne.controllers;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.parkingzne.dtos.EstacionamientoDTO;
 import pe.edu.upc.parkingzne.dtos.MontoDiarioEstacionamientoDTO;
 import pe.edu.upc.parkingzne.entities.Estacionamiento;
+import pe.edu.upc.parkingzne.exceptions.RequestBodyException;
 import pe.edu.upc.parkingzne.servicesinterfaces.IEstacionamientoService;
 
 
@@ -38,44 +43,57 @@ public class EstacionamientoController {
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADEST')")
-    public void insertar(@RequestBody EstacionamientoDTO dto){
-        logger.info("Insertando nuevo estacionamiento para el usuario con ID: {}", dto.getIdEstacionamiento());
+    public ResponseEntity<String> insertar(@Valid @RequestBody EstacionamientoDTO dto) {
+        logger.info("Insertando nuevo estacionamiento");
+
+        if (dto.getNombreEstacionamiento() == null || dto.getNombreEstacionamiento().isBlank()) {
+            throw new RequestBodyException("El nombre del estacionamiento es obligatorio.");
+        }
+
         ModelMapper m = new ModelMapper();
         Estacionamiento e = m.map(dto, Estacionamiento.class);
         aS.insert(e);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Estacionamiento registrado correctamente.");
     }
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADEST')")
-    public EstacionamientoDTO buscarId(@PathVariable("id") int id){
-        logger.info("Buscando estacionamientos con ID: {}", id);
+    public EstacionamientoDTO buscarId(@PathVariable("id") @Min(1) int id) {
+        logger.info("Buscando estacionamiento con ID: {}", id);
         ModelMapper m = new ModelMapper();
-        EstacionamientoDTO dto = m.map(aS, EstacionamientoDTO.class);
+        EstacionamientoDTO dto = m.map(aS.listId(id), EstacionamientoDTO.class);
         return dto;
     }
+
     @PutMapping
     @PreAuthorize("hasAnyAuthority('ADEST')")
-    public void modificar(@RequestBody EstacionamientoDTO dto){
-        logger.info("Modificando estacionamientos con ID: {}", dto.getIdEstacionamiento());
+    public ResponseEntity<String> modificar(@Valid @RequestBody EstacionamientoDTO dto) {
+        logger.info("Modificando estacionamiento con ID: {}", dto.getIdEstacionamiento());
+
         ModelMapper m = new ModelMapper();
         Estacionamiento e = m.map(dto, Estacionamiento.class);
         aS.update(e);
+
+        return new ResponseEntity<>("Estacionamiento modificado correctamente.", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADEST')")
-    public void eliminar(@PathVariable("id") int id){
-        logger.info("Eliminando estacionamientos con ID: {}", id);
+    public ResponseEntity<String> eliminar(@PathVariable("id") @Min(1) int id) {
+        logger.info("Eliminando estacionamiento con ID: {}", id);
         aS.delete(id);
+        return new ResponseEntity<>("Estacionamiento eliminado correctamente.", HttpStatus.OK);
     }
-
 
     @GetMapping("/monto-diario-estacionamientos")
     @PreAuthorize("hasAnyAuthority('ADEST')")
-    public List<MontoDiarioEstacionamientoDTO> montoDiarioEstacionamiento(){
+    public List<MontoDiarioEstacionamientoDTO> montoDiarioEstacionamiento() {
+        logger.info("Calculando monto diario por estacionamiento");
+
         List<String[]> fila = aS.recaudacionDiariaxEstacionamiento();
         List<MontoDiarioEstacionamientoDTO> dtoLista = new ArrayList<>();
 
-        for(String[] columna : fila){
+        for (String[] columna : fila) {
             MontoDiarioEstacionamientoDTO dto = new MontoDiarioEstacionamientoDTO();
             dto.setIdEstacionamiento(Integer.parseInt(columna[0]));
             dto.setNombreEstacionamiento(columna[1]);

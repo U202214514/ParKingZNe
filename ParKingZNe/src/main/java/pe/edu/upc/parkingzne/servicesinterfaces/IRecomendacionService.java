@@ -10,4 +10,5 @@ public interface IRecomendacionService {
     public Recomendacion listId(int id);
     public void update(Recomendacion rr);
     public void delete(int id);
+    public List<Object[]> cantidadRecomendacionesEstacionamientos();
 }

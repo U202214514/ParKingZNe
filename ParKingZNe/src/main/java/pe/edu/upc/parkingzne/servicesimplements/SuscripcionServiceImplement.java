@@ -38,7 +38,7 @@ public class SuscripcionServiceImplement implements ISuscripcionService {
     }
 
     @Override
-    public List<String[]> MensajePorSuscripcion() {
+    public List<Object[]> MensajePorSuscripcion() {
         return pR.MensajePorSuscripcion();
     }
 }

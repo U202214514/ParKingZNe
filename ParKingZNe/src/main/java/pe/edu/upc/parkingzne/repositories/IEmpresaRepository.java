@@ -22,7 +22,7 @@ public interface IEmpresaRepository extends JpaRepository<Empresa, Integer> {
             "JOIN \n" +
             "    empresa emp ON e.id_empresa = emp.id_empresa \n" +
             "WHERE \n" +
-            "    r.estado_reserva = 'Completada' \n" +
+            "    r.estado_reserva = 'completada' \n" +
             "GROUP BY \n" +
             "    emp.id_empresa, emp.nombre_empresa \n" +
             "ORDER BY \n" +

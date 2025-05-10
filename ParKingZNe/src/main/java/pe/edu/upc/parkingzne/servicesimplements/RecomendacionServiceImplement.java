@@ -38,4 +38,9 @@ public class RecomendacionServiceImplement implements IRecomendacionService {
     public void delete(int id) {
         cR.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> cantidadRecomendacionesEstacionamientos() {
+        return cR.cantidadRecomendacionesEstacionamientos();
+    }
 }

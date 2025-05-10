@@ -1,5 +1,7 @@
 package pe.edu.upc.parkingzne.controllers;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,85 +34,77 @@ public class PagoController {
     @PreAuthorize("hasAnyAuthority('ADSUB')")
     public List<PagoDTO> list() {
         logger.info("Obteniendo lista de pagos...");
-
-        List<PagoDTO> pagos = gS.list().stream().map(a -> {
+        return gS.list().stream().map(pago -> {
             ModelMapper m = new ModelMapper();
-            return m.map(a, PagoDTO.class);
+            return m.map(pago, PagoDTO.class);
         }).collect(Collectors.toList());
-
-        logger.info("Total pagos recuperados: {}", pagos.size());
-        return pagos;
     }
+
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADSUB')")
-    public ResponseEntity<String> insertar(@RequestBody PagoDTO dto) {
+    public ResponseEntity<String> insertar(@Valid @RequestBody PagoDTO dto) {
         logger.info("Insertando pago...");
 
-        if (dto == null || dto.getMontoPago() < 0 || dto.getFechaPago() == null) {
-            throw new RequestBodyException("Los campos 'monto' y 'fechaPago' son obligatorios.");
+        if (dto.getMontoPago() <= 0 || dto.getFechaPago() == null) {
+            throw new RequestBodyException("Los campos 'montoPago' debe ser mayor a 0 y 'fechaPago' es obligatorio.");
         }
 
         ModelMapper m = new ModelMapper();
-        Pago pg = m.map(dto, Pago.class);
+        Pago pago = m.map(dto, Pago.class);
 
-        gS.insert(pg);
+        gS.insert(pago);
         logger.info("Pago insertado correctamente.");
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Pago insertado correctamente.");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Pago registrado correctamente.");
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADSUB')")
-    public PagoDTO buscarId(@PathVariable("id") int id) {
+    public PagoDTO buscarId(@PathVariable("id") @Min(1) int id) {
         logger.info("Buscando pago con ID: {}", id);
-
         ModelMapper m = new ModelMapper();
         PagoDTO dto = m.map(gS.listId(id), PagoDTO.class);
-
-        logger.info("Pago encontrado: {}", dto);
         return dto;
     }
+
     @PutMapping
     @PreAuthorize("hasAnyAuthority('ADSUB')")
-    public void modificar(@RequestBody PagoDTO dto) {
-        logger.info("Modificando pago...");
+    public ResponseEntity<String> modificar(@Valid @RequestBody PagoDTO dto) {
+        logger.info("Modificando pago con ID: {}", dto.getIdPago());
 
         ModelMapper m = new ModelMapper();
-        Pago pg = m.map(dto, Pago.class);
+        Pago pago = m.map(dto, Pago.class);
+        gS.update(pago);
 
-        gS.update(pg);
-        logger.info("Pago modificado correctamente.");
+        return ResponseEntity.status(HttpStatus.OK).body("Pago modificado correctamente.");
     }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADSUB')")
-    public void eliminar(@PathVariable("id") int id) {
-        try {
-            logger.info("Eliminando pago con ID: {}", id);
-            gS.delete(id);
-            logger.info("Pago eliminado correctamente.");
-        } catch (Exception e) {
-            logger.error("Error al eliminar pago con ID {}: {}", id, e.getMessage());
-        }
+    public ResponseEntity<String> eliminar(@PathVariable("id") @Min(1) int id) {
+        logger.info("Eliminando pago con ID: {}", id);
+        gS.delete(id);
+        return ResponseEntity.ok("Pago eliminado correctamente.");
     }
 
     @GetMapping("/cantidad-pagos-usuario")
     @PreAuthorize("hasAnyAuthority('ADSUB')")
     public List<UsuarioPagoDTO> cantidadPagosUsuario() {
-        logger.info("Obteniendo pagos por usuarios...");
+        logger.info("Generando cantidad de pagos por usuario...");
 
-        List<String[]> fila = gS.cantidadPagosxUsuario();
-        logger.info("Cantidad de pagos recuperados: {}", fila.size());
+        List<Object[]> fila = gS.cantidadPagosxUsuario();
         List<UsuarioPagoDTO> dtoLista = new ArrayList<>();
 
-        for(String[] columna : fila) {
+        for (Object[] columna : fila) {
             UsuarioPagoDTO dto = new UsuarioPagoDTO();
-            dto.setId(Integer.parseInt(columna[0]));
-            dto.setNombre(columna[1]);
-            dto.setApellidos(columna[2]);
-            dto.setCantidadPagos(Integer.parseInt(columna[3]));
+            dto.setId(((Number) columna[0]).intValue());
+            dto.setNombre((String) columna[1]);
+            dto.setApellidos((String) columna[2]);
+            dto.setCantidadPagos(((Number) columna[3]).intValue());
             dtoLista.add(dto);
         }
-        logger.info("Cantidad de pagos por usuarios generada correctamente con {} elementos.", dtoLista.size());
+
+        logger.info("Cantidad de pagos generada correctamente: {} registros.", dtoLista.size());
         return dtoLista;
     }
 

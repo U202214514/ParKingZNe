@@ -37,4 +37,9 @@ public class RolImplement implements IRolService {
     public void delete(int id) {
         rR.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> CantidadRolesxTipo() {
+        return rR.CantidadRolesxTipo();
+    }
 }

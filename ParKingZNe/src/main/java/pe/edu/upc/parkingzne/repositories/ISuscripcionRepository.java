@@ -15,13 +15,13 @@ public interface ISuscripcionRepository extends JpaRepository<Suscripcion, Integ
     @Query(value = "SELECT \n" +
             "    u.username, \n" +
             "    'Hola ' || u.nombre || ' ' || u.apellidos || \n" +
-            "\t', tu suscripción se vencerá el ' || s.fecha_fin || \n" +
-            "\t'. Te recordamos que puedes renovarla antes de esa fecha.' AS mensaje \n" +
+            "    ', tu suscripción se vencerá el ' || s.fecha_fin || \n" +
+            "    '. Te recordamos que puedes renovarla antes de esa fecha.' AS mensaje\n" +
             "FROM \n" +
-            "    suscripcion s \n" +
+            "    suscripcion s\n" +
             "JOIN \n" +
-            "    Usuario u ON s.id_usuario = u.id_usuario \n" +
+            "    Usuario u ON s.id_usuario = u.id_usuario\n" +
             "WHERE \n" +
-            "    CURRENT_DATE = s.fecha_inicio", nativeQuery = true)
-    public List<String[]> MensajePorSuscripcion();
+            "    CURRENT_DATE BETWEEN s.fecha_inicio AND s.fecha_fin;", nativeQuery = true)
+    public List<Object[]> MensajePorSuscripcion();
 }

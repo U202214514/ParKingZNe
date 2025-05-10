@@ -10,6 +10,6 @@ public interface ISuscripcionService {
     public Suscripcion listId(int id);
     public void update(Suscripcion sp);
     public void delete(int id);
-    public List<String[]> MensajePorSuscripcion();
+    public List<Object[]> MensajePorSuscripcion();
 
 }

@@ -10,4 +10,5 @@ public interface INotificacionReservaService {
     public NotificacionReserva listId(int id);
     public void update(NotificacionReserva notificacionReserva);
     public void delete(int id);
+    public List<Object[]> CantidaddeNotificionesPorReservas();
 }

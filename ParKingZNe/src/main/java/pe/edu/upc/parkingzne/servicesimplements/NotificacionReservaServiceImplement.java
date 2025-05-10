@@ -38,4 +38,9 @@ public class NotificacionReservaServiceImplement implements INotificacionReserva
     public void delete(int id) {
         nR.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> CantidaddeNotificionesPorReservas() {
+        return nR.CantidaddeNotificionesPorReservas();
+    }
 }

@@ -22,7 +22,7 @@ public interface IEstacionamientoRepository extends JpaRepository<Estacionamient
             "JOIN \n" +
             "    estacionamiento e ON r.id_estacionamiento = e.id_estacionamiento\n" +
             "WHERE \n" +
-            "    r.estado_reserva = 'Completada'\n" +
+            "    r.estado_reserva = 'Finalizada'\n" +
             "GROUP BY \n" +
             "    r.id_estacionamiento, e.nombre_estacionamiento, r.fecha_reserva\n" +
             "ORDER BY \n" +

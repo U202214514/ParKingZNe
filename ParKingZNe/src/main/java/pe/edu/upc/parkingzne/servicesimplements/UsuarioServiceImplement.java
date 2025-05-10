@@ -42,8 +42,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public List<String[]> ObtenerUsuarioMasActivo() {
-        return uR.ObtenerUsuarioMasActivo();
+    public List<Object[]> usuariosConEdadentre18y40anos() {
+        return uR.usuariosConEdadentre18y40anos();
     }
 
 

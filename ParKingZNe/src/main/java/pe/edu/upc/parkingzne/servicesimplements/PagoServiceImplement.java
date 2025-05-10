@@ -38,7 +38,7 @@ public class PagoServiceImplement implements IPagoService {
     }
 
     @Override
-    public List<String[]> cantidadPagosxUsuario() {
+    public List<Object[]> cantidadPagosxUsuario() {
         return gR.cantidadPagosxUsuario();
     }
 

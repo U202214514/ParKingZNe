@@ -27,5 +27,5 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
             "    p.fecha_pago BETWEEN '2020-07-13' AND '2026-12-12' \n" +
             "GROUP BY \n" +
             "    u.id_usuario, u.nombre, u.apellidos;", nativeQuery = true)
-    public List<String[]> cantidadPagosxUsuario();
+    public List<Object[]> cantidadPagosxUsuario();
 }
