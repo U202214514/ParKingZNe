@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
     @Column(name = "apellidos", nullable=false, length = 50)
     private String apellidos;
 
-    @Column(name = "fechanacimiento", nullable = true )
+    @Column(name = "fechanacimiento", nullable = false )
     private LocalDate fechanacimiento;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
